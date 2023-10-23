@@ -10,5 +10,8 @@
     "impro"
   ],
   "author": "Jakub Kriz",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.52.0"
+  }
 }
