@@ -7,7 +7,8 @@ export const router = createPlaywrightRouter()
 // This replaces the request.label === DETAIL branch of the if clause.
 router.addHandler('DETAIL', async ({ request, page, log }) => {
 	log.debug(`Extracting data: ${request.url}`)
-	/*const urlParts = request.url.split('/').slice(-2)
+	/*
+	const urlParts = request.url.split('/').slice(-2)
 	const modifiedTimestamp = await page.locator('time[datetime]').getAttribute('datetime')
 	const runsRow = page.locator('ul.ActorHeader-userMedallion > li').filter({ hasText: 'Runs' })
 	const runCountString = await runsRow.textContent()
@@ -21,9 +22,15 @@ router.addHandler('DETAIL', async ({ request, page, log }) => {
 		modifiedDate: new Date(Number(modifiedTimestamp)),
 		runCount: runCountString.replace('R	uns ', ''),
 	}*/
+	const urlParts = request.url.split('/').slice(-2)
+	const modifiedTimestamp = await page.locator('time[datetime]').getAttribute('datetime')
+	
 	const results = {
+		url: request.url,
+		uniqueIdentifier: urlParts.join('/'),
 		title: await page.locator('h1').textContent(),
-		dest: 'fuuuu'
+		modifiedDate: new Date(Number(modifiedTimestamp)),
+		dest: 'DETAIL'
 	}
 
 	log.debug(`Saving data: ${request.url}`)
