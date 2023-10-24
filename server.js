@@ -1,14 +1,20 @@
-import http from 'http'
+import express from 'express'
+import crawls from './src/routes/crawlers.js'
+import bodyParser from 'body-parser'
+const app = express()
+const port = 4000
 
-http.createServer(function (request, response) {
-	// Send the HTTP header 
-	// HTTP Status: 200 : OK
-	// Content Type: text/plain
-	response.writeHead(200, {'Content-Type': 'text/plain'})
+// Add the bodyParser middelware to the express application
+app.use(bodyParser.urlencoded({ extended: false }))
 
-	// Send the response body as "Hello World"
-	response.end('Hello World\n')
-}).listen(8081)
+// Set up home route
+app.get('/', (req, res) => {
+	res.send('This is the homepage')
+})
 
-// Console will print the message
-console.log('Server running at http://127.0.0.1:8081/')
+// Set up other routes
+app.use('/crawler', crawls)
+
+app.listen(port, () => {
+	console.log(`Success! Your application is running on http://127.0.0.1:${port}`)
+})

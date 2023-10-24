@@ -2,6 +2,7 @@
   "name": "impropoint",
   "version": "1.0.0",
   "description": "Impropoint - improshow crawler",
+  "homepage": "https://github.com/ceskytunak/impropoint",
   "type": "module",
   "main": "server.js",
   "scripts": {
